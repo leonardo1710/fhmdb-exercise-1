@@ -24,3 +24,6 @@ Maven uses the default system Java installation. If you have multiple Java insta
     </plugins>
 </build>
 ```
+
+### Run the tests
+Run automated tests by running `mvn clean test` command in Maven.
