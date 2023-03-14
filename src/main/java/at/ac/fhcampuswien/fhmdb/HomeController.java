@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -84,9 +85,12 @@ public class HomeController implements Initializable {
             throw new IllegalArgumentException("movies must not be null");
         }
 
-        return movies.stream().filter(movie ->
-                movie.getTitle().toLowerCase().contains(query.toLowerCase()) ||
-                movie.getDescription().toLowerCase().contains(query.toLowerCase()))
+        return movies.stream()
+                .filter(Objects::nonNull)
+                .filter(movie ->
+                    movie.getTitle().toLowerCase().contains(query.toLowerCase()) ||
+                    movie.getDescription().toLowerCase().contains(query.toLowerCase())
+                )
                 .toList();
     }
 
@@ -97,7 +101,10 @@ public class HomeController implements Initializable {
             throw new IllegalArgumentException("movies must not be null");
         }
 
-        return movies.stream().filter(movie -> movie.getGenres().contains(genre)).toList();
+        return movies.stream()
+                .filter(Objects::nonNull)
+                .filter(movie -> movie.getGenres().contains(genre))
+                .toList();
     }
 
     public void applyAllFilters(String searchQuery, Object genre) {
